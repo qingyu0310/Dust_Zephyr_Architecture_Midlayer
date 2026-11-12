@@ -1,0 +1,3 @@
+name: user_midlayer
+build:
+  kconfig: zephyr/Kconfig
