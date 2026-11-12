@@ -14,7 +14,7 @@
 
 #include "spec/ecat_application_objects.hpp"
 #include "ecat_types.hpp"
-#include "interface/ecat_esc.hpp"
+#include "ecat_esc.hpp"
 
 namespace ecat {
 

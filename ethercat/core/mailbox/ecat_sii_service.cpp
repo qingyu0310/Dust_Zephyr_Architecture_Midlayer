@@ -12,7 +12,7 @@
 
 #include "spec/ecat_registers.hpp"
 #include "spec/ecat_wire.hpp"
-#include "interface/ecat_esc.hpp"
+#include "ecat_esc.hpp"
 #include "spec/ecat_limits.hpp"
 
 namespace ecat {

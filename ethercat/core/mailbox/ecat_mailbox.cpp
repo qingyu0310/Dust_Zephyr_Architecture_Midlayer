@@ -15,7 +15,7 @@
 #include "spec/ecat_registers.hpp"
 #include "al/ecat_sm.hpp"
 #include "spec/ecat_wire.hpp"
-#include "interface/ecat_esc.hpp"
+#include "ecat_esc.hpp"
 #include "log.hpp"
 
 namespace ecat {

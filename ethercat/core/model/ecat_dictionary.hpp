@@ -15,7 +15,7 @@
 #include "spec/ecat_application_objects.hpp"
 #include "spec/ecat_object.hpp"
 #include "ecat_types.hpp"
-#include "interface/ecat_profile.hpp"
+#include "ecat_profile.hpp"
 
 namespace ecat {
 

@@ -14,7 +14,7 @@
 
 #include <cstdint>
 #include <zephyr/sys/atomic.h>
-#include "interface/ecat_esc.hpp"
+#include "ecat_esc.hpp"
 
 namespace ecat {
 

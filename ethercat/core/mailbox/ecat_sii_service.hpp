@@ -11,7 +11,7 @@
 #pragma once
 
 #include <cstdint>
-#include "interface/ecat_esc.hpp"
+#include "ecat_esc.hpp"
 
 namespace ecat {
 

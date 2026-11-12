@@ -15,7 +15,7 @@
 #include "al/ecat_sm.hpp"
 #include "al/ecat_state_machine.hpp"
 #include "al/ecat_sync.hpp"
-#include "interface/ecat_esc.hpp"
+#include "ecat_esc.hpp"
 #include "log.hpp"
 #include "mailbox/ecat_coe.hpp"
 #include "mailbox/ecat_mailbox.hpp"

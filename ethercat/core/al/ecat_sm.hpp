@@ -15,7 +15,7 @@
 #include <cstdint>
 
 #include "spec/ecat_registers.hpp"
-#include "interface/ecat_esc.hpp"
+#include "ecat_esc.hpp"
 
 namespace ecat {
 
