@@ -1,15 +1,14 @@
-# 中间层：只放协议栈
+# 中间层装配（midlayer/）—— 只放协议栈
 #
-# - usb/core/      USB 枚举 / CDC / 描述符 / 端点
-# - ethercat/core/ AL 状态机 / 邮箱 / SDO / PDO
+# 本层自包含：上层只 add_subdirectory(midlayer)，内部子目录由本文件负责。
 #
-# 门面（Usb : Stream、EthercatSlave<Rx,Tx>）在 framework/drivers/ 上层封装里，
+# 子目录职责：
+#   usb/core/       USB 枚举 / CDC / 描述符 / 端点
+#   ethercat/core/  AL 状态机 / 邮箱 / SDO / PDO
+#
+# 门面（Usb : Stream、EthercatSlave<Rx,Tx>）在 framework/drivers/，不在这里。
 # 驱动（Pwm / Output / Input / Can / Spi / UartDma / Rs485）也在 framework/drivers/。
-# 契约头（usb_hal.hpp / ecat_esc.hpp 等）在 zephyr/contract/。
-#
-# 装配方式与 framework 各层同构：Kconfig 门禁 → 源文件进 app target。
 
-# USB 协议栈
 if(CONFIG_DUST_USB_DEVICE_STACK)
     target_sources(app PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/usb/core/usb_dev_port.cpp
