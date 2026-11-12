@@ -1,11 +1,15 @@
-# 中间层：只放协议栈（USB 枚举/CDC、EtherCAT AL 状态机/邮箱/SDO/PDO）
+# 中间层：只放协议栈
 #
-# 驱动（Pwm / Output / Input / Encoder / Can / Spi / UartDma / Rs485）在 framework/drivers/，
-# 不在这里。契约头（usb_hal.hpp / ecat_esc.hpp 等）在 zephyr/contract/。
+# - usb/core/      USB 枚举 / CDC / 描述符 / 端点
+# - ethercat/core/ AL 状态机 / 邮箱 / SDO / PDO
+#
+# 门面（Usb : Stream、EthercatSlave<Rx,Tx>）在 framework/drivers/ 上层封装里，
+# 驱动（Pwm / Output / Input / Can / Spi / UartDma / Rs485）也在 framework/drivers/。
+# 契约头（usb_hal.hpp / ecat_esc.hpp 等）在 zephyr/contract/。
 #
 # 装配方式与 framework 各层同构：Kconfig 门禁 → 源文件进 app target。
 
-# USB 协议栈（门面 usb.cpp + core/ 三个源文件）
+# USB 协议栈
 if(CONFIG_DUST_USB_DEVICE_STACK)
     target_sources(app PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/usb/core/usb_dev_port.cpp
@@ -18,18 +22,7 @@ if(CONFIG_DUST_USB_DEVICE_STACK)
     )
 endif()
 
-if(CONFIG_DUST_COM_USB)
-    target_sources(app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/usb/usb.cpp)
-    target_include_directories(app PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/usb
-        ${CMAKE_CURRENT_SOURCE_DIR}/usb/core
-        ${CMAKE_CURRENT_SOURCE_DIR}/../zephyr/contract
-        ${CMAKE_CURRENT_SOURCE_DIR}/../framework/drivers/communication/stream/uart
-        ${CMAKE_CURRENT_SOURCE_DIR}/../framework/drivers/communication/stream
-    )
-endif()
-
-# EtherCAT 从站（C++ 实现）
+# EtherCAT 协议栈
 #
 # core/ 按职责分五层：
 #   spec/     纯数据与常量，无状态（limits / registers / wire / object / application_objects）
@@ -54,7 +47,6 @@ if(CONFIG_DUST_COM_ETHERCAT)
         ${CMAKE_CURRENT_SOURCE_DIR}/ethercat/core/ecat_device.cpp
     )
     target_include_directories(app PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/ethercat
         ${CMAKE_CURRENT_SOURCE_DIR}/ethercat/core
         ${CMAKE_CURRENT_SOURCE_DIR}/../zephyr/contract
     )
